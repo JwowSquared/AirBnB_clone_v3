@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""this is a test string"""
+"""
+a new view for State objects that handles
+all default RestFul API actions
+"""
 
 from flask import request, jsonify, abort
 from api.v1.views import app_views
@@ -9,7 +12,7 @@ from models.state import State
 
 @app_views.route("/states", strict_slashes=False, methods=["GET", "POST"])
 def states_base():
-    """this is a test string"""
+    """Retrieves the list of all State objects"""
     if request.method == "GET":
         out = []
         for state in storage.all("State").values():
@@ -29,7 +32,7 @@ def states_base():
                  strict_slashes=False,
                  methods=["GET", "DELETE", "PUT"])
 def states_id(s_id):
-    """this is a test string"""
+    """Retrieves a State object"""
     if request.method == "GET":
         state = storage.get(State, s_id)
         if state:

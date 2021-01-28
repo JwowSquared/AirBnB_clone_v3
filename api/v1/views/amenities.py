@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""this is a test string"""
+"""
+a new view for Amenity objects that handles
+all default RestFul API actions
+"""
 
 from flask import request, jsonify, abort
 from api.v1.views import app_views
@@ -9,7 +12,7 @@ from models.amenity import Amenity
 
 @app_views.route("/amenities", strict_slashes=False, methods=["GET", "POST"])
 def amenities_base():
-    """this is a test string"""
+    """Retrieves the list of all Amenity objects"""
     if request.method == "GET":
         out = []
         for amenity in storage.all("Amenity").values():

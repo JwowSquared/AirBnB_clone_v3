@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""this is a test string"""
+"""web app creation module"""
 
 from models import storage
 from flask import Flask
@@ -13,13 +13,13 @@ cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 @app.errorhandler(404)
 def page_not_found(err=None):
-    """this is a test string"""
+    """page not found error handler"""
     return {"error": "Not found"}, 404
 
 
 @app.teardown_appcontext
 def tear(err=None):
-    """this is a test string"""
+    """app teardown function"""
     storage.close()
 
 if __name__ == "__main__":
