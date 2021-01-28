@@ -90,16 +90,17 @@ class TestFileStorage(unittest.TestCase):
 
 class TestDBStorage(unittest.TestCase):
     """Test the DBStorage class"""
+    @unittest.skipIf(models.storage_t != "db", "not testing db storage")
     def test_get(self):
         """test that get returns an object"""
-        test = DBStorage()
-        test.reload()
+        test = models.storage
         self.assertTrue(test.get(State, "testing") is None)
 
+    @unittest.skipIf(models.storage_t != "db", "not testing db storage")
     def test_count(self):
         """test that count works correctly"""
-        from models import storage
-        bench = storage.count()
-        storage.new(State(**{"name": "Jalapeno"}))
-        storage.save()
-        self.assertTrue(bench + 1 == storage.count())
+        s = models.storage
+        bench = s.count()
+        s.new(State(**{"name": "Jalapeno"}))
+        s.save()
+        self.assertTrue((bench + 1) == s.count())
