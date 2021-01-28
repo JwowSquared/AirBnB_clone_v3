@@ -124,7 +124,7 @@ class TestFileStorage(unittest.TestCase):
     def test_count(self):
         """tests that filestorage handles count correctly"""
         s = models.storage
-        bench = storage.count()
+        bench = s.count()
         s.new(State(**{"name": "Habenero"}))
         s.save()
         self.assertTrue(bench + 1 == s.count())
